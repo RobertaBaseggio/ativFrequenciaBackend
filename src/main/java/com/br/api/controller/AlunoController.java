@@ -31,7 +31,7 @@ public class AlunoController {
         return alunoAssembler.toModel(aluno);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<Aluno> editar( @PathVariable Long id, @RequestBody Aluno aluno){
 
             aluno.setId(id);
