@@ -1,7 +1,8 @@
 CREATE TABLE frequencia(
-    id bigint not null,
+    id bigint not null auto_increment,
     id_aluno bigint not null,
-    frequencia varchar(20),
+    frequencia boolean,
+    horario varchar(30),
     data Date,
     primary key(id)
 );

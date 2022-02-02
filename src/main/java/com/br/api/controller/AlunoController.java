@@ -19,7 +19,7 @@ public class AlunoController {
     @GetMapping
     public List<Aluno> listar(){
 
-        return alunoAssembler.toCollectionModel(alunoRepository.findAll());
+        return alunoRepository.findAll();
 
     }
 
@@ -34,7 +34,7 @@ public class AlunoController {
     @PutMapping("/editar/{id}")
     public ResponseEntity<Aluno> editar( @PathVariable Long id, @RequestBody Aluno aluno){
 
-            aluno.setId(id);
+            aluno.setIdAluno(id);
             aluno.setNome(aluno.getNome());
             aluno = alunoRepository.save(aluno);
 

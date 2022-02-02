@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,11 +26,14 @@ public class FrequenciaController {
     }
 
     @PostMapping("/cadastro")
-    public Frequencia cadastrar(@RequestBody Frequencia frequencia){
-        Frequencia newFrequencia = frequenciaAssembler.toEntity(frequencia);
-        frequencia = frequenciaRepository.save(newFrequencia);
+    public List<Frequencia> cadastrar(@RequestBody List<Frequencia> frequencias){
 
-        return frequenciaAssembler.toModel(frequencia);
+        frequencias.forEach(frequencia -> {
+            frequencia.setData(LocalDateTime.now());
+        });
+         frequenciaRepository.saveAll(frequencias);
+
+        return frequencias;
     }
 
     @PutMapping("/{id}")
