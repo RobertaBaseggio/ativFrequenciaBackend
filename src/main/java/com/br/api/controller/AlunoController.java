@@ -5,6 +5,8 @@ import com.br.domain.model.Aluno;
 import com.br.domain.repository.AlunoRepository;
 import lombok.AllArgsConstructor;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +49,10 @@ public class AlunoController {
         alunoRepository.deleteById(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("{idAluno}")
+    public Optional<Aluno> buscarId (@PathVariable Long idAluno){
+        return alunoRepository.findById(idAluno);
     }
 }
